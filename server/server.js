@@ -18,7 +18,18 @@ server.listen(3000, () => {
 });
 
 server.get("/users", (req, res) => {
-  const method = req.method;
-  const url = req.url;
-  res.send(`Du gjorde en ${method}-förfrågan till url:en ${url}`);
+  const db = new sqlite3.Database("./gik339-labb2.db");
+  const sql = "SELECT * FROM USERS";
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(rows);
+    }
+  });
+  db.close();
 });
+
+// const method = req.method;
+// const url = req.url;
+// res.send(`Du gjorde en ${method}-förfrågan till url:en ${url}`);
