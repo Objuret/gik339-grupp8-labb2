@@ -1,7 +1,25 @@
 const url = "http://localhost:3000/users";
-const ul = document.createElement("ul");
-document.body.appendChild(ul);
+const contentBox = document.createElement("div");
+const ul = contentBox.appendChild(document.createElement("ul"));
+document.body.appendChild(contentBox);
 
+function styleBg() {
+  document.body.style.backgroundColor = "#013f5c";
+  document.body.style.background = "linear-gradient(135deg, #013f5c, #026c91)";
+  document.body.style.height = "100vh";
+}
+styleBg();
+
+const pastelHeaven = {
+  blue: "#ADD8E6",
+  green: "#C6F4D6",
+  yellow: "#F7DC6F",
+  red: "#FFC0CB",
+  purple: "#C5C3C8",
+  gray: "#D3D3D3",
+};
+
+//--- logiken för att hämta och göra listan --//
 fetch(url)
   .then((svaret) => {
     console.log(svaret);
@@ -20,28 +38,38 @@ fetch(url)
 
       // för att slippa fel om color inte finns
       if (user.color) {
-        userId.style.color = user.color;
+        userId.style.backgroundColor = pastelHeaven[user.color];
       }
     });
+    styleListItems(); //den lär stå här inne
   });
+//----- end logiken -----//
 
-const listItems = document.querySelectorAll("ul li");
-
-function changeColor() {
-  listItems.style.fontFamily = "Arial, sans-serif"; // Ändra font
-  listItems.style.marginBottom = "10px"; // Lägg till lite avstånd
-  listItems.style.padding = "5px"; // Lägg till padding
-  listItems.style.border = "1px solid lightgray"; // Lägg till en ram
-  listItems.style.borderRadius = "5px"; // Rundade hörn
-
-  // Ändra bakgrundsfärg varannan rad (alternativ styling)
-  if (index % 2 === 0) {
-    li.style.backgroundColor = "#f9f9f9"; // Ljusgrå
-  } else {
-    li.style.backgroundColor = "#e0e0e0"; // Mörkare grå
-  }
+//bakgrundsrutan
+function styleContentBox() {
+  contentBox.style.backgroundColor = "#999";
+  contentBox.style.padding = "20px";
+  contentBox.style.borderRadius = "10px";
+  contentBox.style.boxShadow = "0 4px 8px #000";
+  contentBox.style.maxWidth = "600px";
+  contentBox.style.margin = "20px auto";
 }
-changeColor();
+styleContentBox();
+
+//själva li-itemsen
+function styleListItems() {
+  const listItems = document.querySelectorAll("ul li");
+  console.log(listItems);
+  listItems.forEach((li, index) => {
+    li.style.fontFamily = "Arial, sans-serif";
+    li.style.marginBottom = "10px";
+    li.style.padding = "5px";
+    li.style.border = "1px solid lightgray";
+    li.style.borderRadius = "5px";
+  });
+}
+
+// console.log(changeColor);
 // console.log(userId);
 // const li = (document.createElement("li").style.textColor = user.color);
 // console.log(`${li}`);
