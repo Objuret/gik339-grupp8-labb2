@@ -4,8 +4,8 @@ const ul = contentBox.appendChild(document.createElement("ul"));
 document.body.appendChild(contentBox);
 
 function styleBg() {
-  document.body.style.backgroundColor = "#013f5c";
-  document.body.style.background = "linear-gradient(135deg, #013f5c, #026c91)";
+  // document.body.style.backgroundColor = "#013f5c";
+  document.body.style.background = "linear-gradient(135deg, #AC90A9, #E0BBE4)";
   document.body.style.height = "100vh";
 }
 styleBg();
@@ -47,7 +47,7 @@ fetch(url)
 
 //bakgrundsrutan
 function styleContentBox() {
-  contentBox.style.backgroundColor = "#999";
+  contentBox.style.backgroundColor = "#957DAD";
   contentBox.style.padding = "20px";
   contentBox.style.borderRadius = "10px";
   contentBox.style.boxShadow = "0 4px 8px #000";
