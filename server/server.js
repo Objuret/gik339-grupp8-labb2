@@ -30,7 +30,3 @@ server.get("/users", (req, res) => {
   });
   db.close();
 });
-
-// const method = req.method;
-// const url = req.url;
-// res.send(`Du gjorde en ${method}-förfrågan till url:en ${url}`);
