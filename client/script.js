@@ -3,27 +3,11 @@ const contentBox = document.createElement("div");
 const ul = contentBox.appendChild(document.createElement("ul"));
 document.body.appendChild(contentBox);
 
-function styleBg() {
-  // document.body.style.backgroundColor = "#013f5c";
-  document.body.style.background = "linear-gradient(135deg, #AC90A9, #E0BBE4)";
-  document.body.style.height = "100vh";
-}
-styleBg();
-
-const pastelHeaven = {
-  blue: "#ADD8E6",
-  green: "#C6F4D6",
-  yellow: "#F7DC6F",
-  red: "#FFC0CB",
-  purple: "#C5C3C8",
-  gray: "#D3D3D3",
-};
-
 //--- logiken för att hämta och göra listan --//
 fetch(url)
-  .then((svaret) => {
-    console.log(svaret);
-    return svaret.json();
+  .then((response) => {
+    console.log(response);
+    return response.json();
   })
   .then((jsonData) => console.log(jsonData));
 
@@ -41,9 +25,25 @@ fetch(url)
         userId.style.backgroundColor = pastelHeaven[user.color];
       }
     });
-    styleListItems(); //den lär stå här inne
+    styleListItems(); //den lär stå här inne, tror det blir fel med syncen annat
   });
 //----- end logiken -----//
+
+//--- styling ---//
+function styleBg() {
+  document.body.style.background = "linear-gradient(135deg, #AC90A9, #E0BBE4)";
+  document.body.style.height = "100vh";
+}
+styleBg();
+
+const pastelHeaven = {
+  blue: "#ADD8E6",
+  green: "#C6F4D6",
+  yellow: "#F7DC6F",
+  red: "#FFC0CC",
+  purple: "#D9C4EC",
+  gray: "#D3D3D3",
+};
 
 //bakgrundsrutan
 function styleContentBox() {
@@ -62,14 +62,30 @@ function styleListItems() {
   console.log(listItems);
   listItems.forEach((li, index) => {
     li.style.fontFamily = "Arial, sans-serif";
+    li.style.lineHeight = "1.8";
+    // li.style.listStylePosition = "";
     li.style.marginBottom = "10px";
     li.style.padding = "5px";
     li.style.border = "1px solid lightgray";
     li.style.borderRadius = "5px";
+    li.style.margin = "10px 0";
+    li.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
+    li.style.transition = "all 0.3s ease";
+
+    // Hover-effekt
+    li.addEventListener("mouseenter", () => {
+      // li.style.backgroundColor = "#007BFF"; // Modern blå färg
+      // li.style.color = "#fff";
+      li.style.transform = "scale(1.02)"; // Subtil skala
+      li.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"; // Djupare skugga
+    });
+
+    li.addEventListener("mouseleave", () => {
+      // li.style.backgroundColor = "#f0f0f0"; // Återställ färg
+      li.style.color = "#000"; // Återställ textfärg
+      li.style.transform = "scale(1)"; // Återställ skala
+      li.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)"; // Återställ skugga
+    });
   });
 }
-
-// console.log(changeColor);
-// console.log(userId);
-// const li = (document.createElement("li").style.textColor = user.color);
-// console.log(`${li}`);
+//--- end styling ---//
